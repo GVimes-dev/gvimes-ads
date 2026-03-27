@@ -5,6 +5,7 @@ require('dotenv').config({ path: '.env.local' });
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 
 const serveRouter      = require('./routes/serve');
 const trackRouter      = require('./routes/track');
@@ -14,6 +15,15 @@ const advertisersRouter = require('./routes/advertisers');
 const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+  : ['http://localhost:3000'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+}));
 
 app.use(express.json());
 
