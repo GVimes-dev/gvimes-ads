@@ -117,11 +117,12 @@ router.get('/', async (req, res) => {
 
     // ── 8. Respond ────────────────────────────────────────────────────────
     return res.json({
-      creative_id:      creative.creative_id,
-      image_url:        creative.image_url,
-      click_url:        creative.click_url,
-      headline:         creative.headline  || null,
-      alt_text:         creative.alt_text  || null,
+      creative_id:       creative.creative_id,
+      image_url:         creative.image_url,
+      mobile_image_url:  creative.mobile_image_url || null,
+      click_url:         creative.click_url,
+      headline:          creative.headline  || null,
+      alt_text:          creative.alt_text  || null,
       impression_token,
     });
   } catch (err) {
